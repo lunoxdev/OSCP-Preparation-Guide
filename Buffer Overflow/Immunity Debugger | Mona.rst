@@ -40,3 +40,4 @@ Keeping mona.py up-to-date
 .. code-block:: none
 
     !mona update
+
