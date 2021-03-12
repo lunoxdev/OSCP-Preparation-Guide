@@ -22,7 +22,7 @@ Some applications are configured to be started from the service manager and will
 Mona Setup
 ==========
 
-Mona is a powerful plugin for Immunity Debugger that makes exploiting buffer overflows much easier. Download: :download:`mona.py <../_static/files/mona.py>`
+Mona is a powerful plugin for Immunity Debugger that makes exploiting buffer overflows much easier.
 
 | The latest version can be downloaded here: https://github.com/corelan/mona
 | The manual can be found here: https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/
