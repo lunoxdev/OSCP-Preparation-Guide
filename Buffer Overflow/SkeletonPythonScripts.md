@@ -1,12 +1,3 @@
-# Don't let buffer overflows overflow your mind
-A common hesitation when stepping into the Penetration Testing with Kali (PWK) course is the section on buffer overflow (BOF) exploits. This course does not expect you to do any advanced exploit writing, but does teach and sets the expectation that you'll understand the basics by the time you sit for the exam and if you're coming into this green, then you may feel a bit intimidated.
-
-Offensive Security does a fantastic job at explaining the process at a quality you will not find anywhere else, but I would recommend getting your feet wet before you commit and purchase your lab time. 
-
-Before I went through the PWK course, I went through every BOF article, video and related CTF machine I could find to keep everything fresh, but I went a bit overboard. To help simplify the process, before I started the PWK course, I wrote myself a detailed guide from beginning to end so that when I get to the course, I would have the foundations solidified by the time I stepped into the course.
-
-It is my hope that if you're looking to start your journey into OSCP that you will find this helpful as it helped me. In a nutshell, what we want to accomplish is to crash the application, inject our code and instruct it to execute our shellcode. Simple right? Let’s go!
-
 ## Steps:
 1. Crash The Application
 2. Find EIP
@@ -16,32 +7,8 @@ It is my hope that if you're looking to start your journey into OSCP that you wi
 6. Generate Shell Code
 7. Exploit
 
-## Definitions:
-1. EIP - The Extended Instruction Pointer (EIP) is a register that contains the address of the next instruction for the program or command.
-2. ESP – The Extended Stack Pointer (ESP) is a register that lets you know where on the stack you are and allows you to push data in and out of the application.
-3. JMP – The Jump (JMP) is an instruction that modifies the flow of execution where the operand you designate will contain the address being jumped to.
-4. \x41, \x42, \x43 - The hexadecimal values for A, B and C. For this exercise, there is no benefit to using hex vs ascii, it's just my personal preference.
+## Fuzzing
 
-## Prerequisites:
-1. Kali Linux VM <https://www.kali.org/downloads/>
-2. Brainpan VM <https://www.vulnhub.com/entry/brainpan-1,51/>
-3. Wine 32 Bit (apt install wine32)
-4. ollydbg
-5. Skeleton Python Script
-
-## Using Ollydbg
-There are a lot of different ways you can use ollydbg, but for this use case we'll keep it the bare minimum. You start the application by launching a terminal and type ollydbg and press enter. 
-
-* To load the brainpan.exe, click file > open > brainpan.exe. Take note in the screenshot below on the bottom right, binaries are loaded in a paused state. To launch the binary, press the blue play button on the top menu bar.
-
-* To easily reload brainpan.exe after crashing, press the black left arrow on the top menu bar and click yes on the process is still active warning.
-
-* The EIP/ESP registers we'll be working with are on the right side of the application.
-
-![Alt text](https://github.com/gh0x0st/Buffer_Overflow/blob/master/Screenshots/ollydbg_base.png?raw=true "Ollydbg")
-
-## Skeleton Python Script
-The easiest way to stay organized when writing these scripts is to use a skeleton file. The below is the going to be your working grounds for the rest of these exercises. I recommend that after each step has been completed, you create a copy of the script and name it at the step you completed. This way, if you get stuck, you can go back to a working step.
 
 ```Python
 #!/usr/bin/python 
@@ -50,7 +17,7 @@ import socket,sys
 
 address = '127.0.0.1'
 port = 9999
-buffer = #TBD
+buffer = []
 
 try:
 	print '[+] Sending buffer'
