@@ -35,6 +35,7 @@ finally:
 
 ### Version 2
 
+```Python
     #!/usr/bin/python 
     import socket, time, sys
 
@@ -68,7 +69,7 @@ finally:
             print("Could not connect to " + ip + ":" + str(port))
             sys.exit(0)
         time.sleep(1)
-
+```
 
 
 ## Explanation:
