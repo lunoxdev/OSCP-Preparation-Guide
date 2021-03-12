@@ -34,3 +34,9 @@ In Immunity Debugger, type the following to set a working directory for mona.
 .. code-block:: none
 
     !mona config -set workingfolder c:\mona\%p
+
+Keeping mona.py up-to-date
+==========================
+.. code-block:: none
+
+    !mona update
