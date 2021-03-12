@@ -156,18 +156,18 @@ You can also use these web generator to find the offset:
 Generate a bytearray using mona, and exclude the null byte (\\x00) by default. Note the location of the bytearray.bin file that is generated.
 
 ```
-    !mona bytearray -b "\x00"
+!mona bytearray -b "\x00"
 ```
 
 Now generate a string of bad chars that is identical to the bytearray. The following python script can be used to generate a string of bad chars from \\x01 to \\xff. Called badchars.py
 
 ```
-    #!/usr/bin/env python
-    from __future__ import print_function
+ #!/usr/bin/env python
+ from __future__ import print_function
 
-    for x in range(1, 256):
-        print("\\x" + "{:02x}".format(x), end='')
+ for x in range(1, 256):
+     print("\\x" + "{:02x}".format(x), end='')
 
-    print()
+ print()
 ```
 
