@@ -1,4 +1,4 @@
-# Steps:
+## Steps:
 1. Crash The Application
 2. Find EIP and Control ESP
 3. Identify Bad Characters 
