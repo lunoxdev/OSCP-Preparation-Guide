@@ -67,6 +67,7 @@ except:
 finally:
 	s.close()
 ```
+Scrip: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV1.py
 
 ### Skeleton Version 2
 
@@ -106,6 +107,9 @@ finally:
         time.sleep(1)
 ```
 
+Scrip: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV2.py
+
+
 # 2. Find EIP and control ESP
 
 We are able to establish that we are able to crash the application with a relative number of bytes. Now we need to identify the exact number bytes that it takes to fill the buffer. Metasploit provides a ruby script called pattern_create.rb that will create a unique string with no repeating characters. After we send this payload to the buffer, it will display what the offset is which we'll use for the next step in finding the EIP.
@@ -125,8 +129,8 @@ You take the unique string character created and that becomes your new buffer in
 #!/usr/bin/python 
 import socket
 
-ip = "10.0.0.1"
-port = 21
+ip = "127.0.0.1"
+port = 9999
 
 prefix = ""
 offset = 0
@@ -148,6 +152,8 @@ try:
 except:
     print("Could not connect.")
 ```
+
+Script: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/exploit.py
 
 Send that payload to the application, make sure it crashed and grab the EIP value in the debugger.
 
@@ -206,6 +212,8 @@ Now generate a string of bad chars that is identical to the bytearray. The follo
 
  print()
 ```
+
+Script: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/badchars.py
 
 Create a new buffer using this information to ensure that we can control EIP:
 
