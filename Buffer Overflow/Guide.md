@@ -10,14 +10,6 @@ There are generally two ways to use Immunity Debugger to debug an application:
 
 When attaching to an application or opening an application in Immunity Debugger, the application will be paused. Click the "Run" button or press F9.
 
-Note: If the binary you are debugging is a Windows service, you may need to restart the application via :code:`sc`
-
-```
-sc stop SLmail
-sc start SLmail
-```
-
-Some applications are configured to be started from the service manager and will not work unless started by service control.
 
 Mona Setup
 ==========
