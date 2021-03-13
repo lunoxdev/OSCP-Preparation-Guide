@@ -13,8 +13,8 @@ When attaching to an application or opening an application in Immunity Debugger,
 Note: If the binary you are debugging is a Windows service, you may need to restart the application via :code:`sc`
 
 ```
-    sc stop SLmail
-    sc start SLmail
+sc stop SLmail
+sc start SLmail
 ```
 
 Some applications are configured to be started from the service manager and will not work unless started by service control.
@@ -24,22 +24,22 @@ Mona Setup
 
 Mona is a powerful plugin for Immunity Debugger that makes exploiting buffer overflows much easier.
 
-| The latest version can be downloaded here: https://github.com/corelan/mona
-| The manual can be found here: https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/
+1. The latest version can be downloaded here: https://github.com/corelan/mona
+2. The manual can be found here: https://www.corelan.be/index.php/2011/07/14/mona-py-the-manual/
 
 Copy the mona.py file into the PyCommands directory of Immunity Debugger (usually located at C:\\Program Files\\Immunity Inc\\Immunity Debugger\\PyCommands).
 
 In Immunity Debugger, type the following to set a working directory for mona.
 
 ```
-    !mona config -set workingfolder c:\mona\%p
+!mona config -set workingfolder c:\mona\%p
 ```
 
 Keeping mona.py up-to-date
 ==========================
 
 ```
-    !mona update
+!mona update
 ```
 
 ## Steps:
