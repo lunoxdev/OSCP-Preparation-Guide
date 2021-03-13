@@ -242,7 +242,9 @@ padding = "\x90" * 16
 
 
 
-## Resources
+
+
+## More Resources
 
 https://github.com/Tib3rius/Pentest-Cheatsheets/tree/master/exploits
 
