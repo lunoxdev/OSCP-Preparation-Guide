@@ -219,7 +219,7 @@ NOTE: Mona should display a log window with the output of the command. If not, c
 We will now use a second script from Metasploit called pattern_offset.rb. What this script will do is take that value and seeing exactly where it exists in the buffer length we designate, showing us the point where the buffer will crash. 
 
 ```
-root@gh0x0st:~# /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q pasteESPvaluehere -l 666
+root@gh0x0st:~# /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q pasteEIPvaluehere -l 666
 [*] Exact match at offset 112
 ```
 ## Method 3
