@@ -48,7 +48,7 @@ Create a file called fuzz.py The following Python script can be modified and use
 
 ### Skeleton Version 1
 
-```
+```Python
 #!/usr/bin/python 
 import socket, time, sys
 
@@ -102,6 +102,7 @@ except:
 finally:
 	s.close()
 ```
+
 Script: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV1.py
 
 ### Skeleton Version 3
