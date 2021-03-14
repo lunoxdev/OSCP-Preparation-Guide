@@ -78,6 +78,8 @@ for string in buffer:
     time.sleep(1)
 ```
 
+Script: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV1.py
+
 ### Skeleton Version 2
 
 ```Python
@@ -100,7 +102,7 @@ except:
 finally:
 	s.close()
 ```
-Scrip: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV1.py
+Script: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV1.py
 
 ### Skeleton Version 3
 
@@ -140,7 +142,7 @@ while len(buffer) < 30:
         time.sleep(1)
 ```
 
-Scrip: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV2.py
+Script: https://github.com/Lunox-code/OSCP-Preparation-Guide/blob/main/Buffer%20Overflow/fuzzerV2.py
 
 
 # 2. Find EIP and control ESP
