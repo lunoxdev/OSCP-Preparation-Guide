@@ -6,7 +6,10 @@ https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
 ***
 
 # Attacking Kerberos
-### Kerbrute Installation 
+### Kerbrute
+Kerbrute is a popular enumeration tool used to brute-force and enumerate valid active-directory users by abusing the Kerberos pre-authentication. You can discovery users, passwords and even password spray!
+
+Installation 
 
 1.) Download a precompiled binary for your OS - https://github.com/ropnop/kerbrute/releases
 
@@ -17,5 +20,5 @@ https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
 ***
 
 ### Rubeus
-
+Is a powerful tool for attacking Kerberos. Just some of the many tools and attacks include overpass the hash, ticket requests and renewals, ticket management, ticket extraction, harvesting, pass the ticket, AS-REP Roasting, and Kerberoasting.
 
