@@ -28,3 +28,10 @@ https://github.com/GhostPack/Rubeus
 ***
 
 ### Mimikatz
+
+***
+
+# Privilege Escalation
+
+### Evil Winrm:
+https://github.com/Hackplayers/evil-winrm
