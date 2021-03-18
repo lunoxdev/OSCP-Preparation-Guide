@@ -17,7 +17,7 @@ Installation
 
 2.) Rename kerbrute_linux_amd64 to kerbrute
 
-3.) chmod +x kerbrute - make kerbrute executable
+3.)```$ chmod +x kerbrute - make kerbrute executable```
 
 ***
 
@@ -29,6 +29,8 @@ https://github.com/GhostPack/Rubeus
 
 ### Mimikatz
 Is an open-source application that allows users to view and save authentication credentials like Kerberos tickets. Is a very popular and powerful post-exploitation tool most commonly used for dumping user credentials inside of an active directory network
+
+https://github.com/gentilkiwi/mimikatz
 ***
 
 # Privilege Escalation
@@ -42,3 +44,15 @@ https://github.com/Hackplayers/evil-winrm
 ### Bloodhound
 
 Is a graphical interface that allows you to visually map out the network. This tool along with SharpHound which similar to PowerView takes the user, groups, trusts etc. of the network and collects them into .json files to be used inside of Bloodhound.
+
+#### Installation
+
+1.) ```$ apt-get install bloodhound```    
+
+2.) ```$ neo4j console - default credentials -> neo4j:neo4j```
+
+#### Mapping the network w/ BloodHound -
+
+1.)```$ bloodhound``` Run this on your attacker machine not the victim machine
+
+2.) Sign In using the same credentials you set with Neo4j
