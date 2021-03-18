@@ -1,6 +1,8 @@
 # Power shell basic commands
 
 ### PowerView-3.0-tricks.ps1
+Powerview is a powerful powershell script from powershell empire that can be used for enumerating a domain after you have already gained a shell in the system.
+
 https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
 
 ***
@@ -25,13 +27,18 @@ Is a powerful tool for attacking Kerberos. Just some of the many tools and attac
 https://github.com/GhostPack/Rubeus
 
 
-***
-
 ### Mimikatz
-
+Is an open-source application that allows users to view and save authentication credentials like Kerberos tickets. Is a very popular and powerful post-exploitation tool most commonly used for dumping user credentials inside of an active directory network
 ***
 
 # Privilege Escalation
 
 ### Evil Winrm:
 https://github.com/Hackplayers/evil-winrm
+
+***
+
+# Post-Exploitation
+### Bloodhound
+
+Is a graphical interface that allows you to visually map out the network. This tool along with SharpHound which similar to PowerView takes the user, groups, trusts etc. of the network and collects them into .json files to be used inside of Bloodhound.
