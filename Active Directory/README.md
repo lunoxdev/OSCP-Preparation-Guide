@@ -31,6 +31,9 @@ https://github.com/GhostPack/Rubeus
 Is an open-source application that allows users to view and save authentication credentials like Kerberos tickets. Is a very popular and powerful post-exploitation tool most commonly used for dumping user credentials inside of an active directory network
 
 https://github.com/gentilkiwi/mimikatz
+
+#### Basic commands here: https://adsecurity.org/?page_id=1821
+
 ***
 
 # Privilege Escalation
@@ -41,6 +44,8 @@ https://github.com/Hackplayers/evil-winrm
 ***
 
 # Post-Exploitation
+Post-exploitation refers to any actions taken after a session is opened. A session is an open shell from a successful exploit or bruteforce attack. A shell can be a standard shell or Meterpreter.
+
 ### Bloodhound
 
 Is a graphical interface that allows you to visually map out the network. This tool along with SharpHound which similar to PowerView takes the user, groups, trusts etc. of the network and collects them into .json files to be used inside of Bloodhound.
