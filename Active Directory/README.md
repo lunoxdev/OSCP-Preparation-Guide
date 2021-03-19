@@ -34,17 +34,19 @@ https://github.com/gentilkiwi/mimikatz
 
 #### Basic commands here: https://adsecurity.org/?page_id=1821
 
-***
-
-# Privilege Escalation
-
-### Evil Winrm:
-https://github.com/Hackplayers/evil-winrm
 
 ***
 
 # Post-Exploitation
 Post-exploitation refers to any actions taken after a session is opened. A session is an open shell from a successful exploit or bruteforce attack. A shell can be a standard shell or Meterpreter.
+
+
+### Evil Winrm:
+
+#### Privilege Escalation
+In order to make life easier to system administrators, this program can be used on any Microsoft Windows Servers with this feature enabled (usually at port 5985), of course only if you have credentials and permissions to use it. So we can say that it could be used in a post-exploitation hacking/pentesting phase. The purpose of this program is to provide nice and easy-to-use features for hacking. It can be used with legitimate purposes by system administrators as well but the most of its features are focused on hacking/pentesting stuff.
+
+https://github.com/Hackplayers/evil-winrm
 
 ### Bloodhound
 
