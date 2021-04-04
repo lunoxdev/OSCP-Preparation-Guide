@@ -1,3 +1,7 @@
+Uses and process
+=======
+
+
 Immunity Debugger
 =================
 
@@ -340,4 +344,9 @@ https://github.com/Tib3rius/Pentest-Cheatsheets/tree/master/exploits
 https://github.com/gh0x0st/Buffer_Overflow
 
 https://github.com/justinsteven/dostackbufferoverflowgood/blob/master/dostackbufferoverflowgood_tutorial.pdf
+
+***
+Check My work:
+https://www.instagram.com/lunox.code/
+***
 
